@@ -106,7 +106,9 @@ def complete_inference(SVS_PATH, PROCESSING_CHECKPOINT, CLASSIFY_CHECKPOINT):
     for tumour_no, tumour_name in enumerate(mesenchymal_tumour_names):
         tumour_dataset['prob_'+tumour_name] = predicted_classes_prob[:, tumour_no]
 
-    print(tumour_dataset.mean())
+    result=tumour_dataset.mean().to_json()
+    print(result)
+    return result
 
 if SVS_PATH is not None and PROCESSING_CHECKPOINT is not None and CLASSIFY_CHECKPOINT is not None:
     complete_inference(SVS_PATH, PROCESSING_CHECKPOINT, CLASSIFY_CHECKPOINT)
